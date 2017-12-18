@@ -530,5 +530,14 @@ procdump(void)
         cprintf(" %p", pc[i]);
     }
     cprintf("\n");
+    pde_t *va = p->pgdir;
+    cprintf("page table: \n");
+    cprintf("memory location of page directory = %p \n",PDX(va));
+    cprintf("pdir PTE %d, %p: \n", p->pid, PPN(va)); 
+    cprintf("memory location of page table = %p\n", PTX(va));  
+    cprintf("ptbl PTE %d, %p, %p\n", p->pid, PPN(va), PTX(va));
+    cprintf("Page mappings: \n");
+    cprintf("%p -> %p", p->pid, PTX(va));
+    cprintf("\n \n");
   }
 }

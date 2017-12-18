@@ -39,6 +39,7 @@ exec(char *path, char **argv)
     goto bad;
 
   // Load program into memory.
+  // Deixa primeira pagina inacessivel(Ponteiro para posicao nula)
   sz = PGSIZE-1;
   for(i=0, off=elf.phoff; i<elf.phnum; i++, off+=sizeof(ph)){
     if(readi(ip, (char*)&ph, off, sizeof(ph)) != sizeof(ph))
